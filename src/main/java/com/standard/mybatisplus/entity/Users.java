@@ -15,7 +15,7 @@ import lombok.Setter;
 @Data
 public class Users {
 
-    private int id;
+    private Long id;
     private String name;
     private int age;
     private String email;
