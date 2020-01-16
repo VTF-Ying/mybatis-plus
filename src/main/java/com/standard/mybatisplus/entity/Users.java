@@ -1,8 +1,16 @@
 package com.standard.mybatisplus.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.Version;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * @ProjectName: mybatis-plus
@@ -20,4 +28,20 @@ public class Users {
     private int age;
     private String email;
 
+    //创建时间
+    @TableField(fill = FieldFill.INSERT)
+    private LocalDateTime createTime;
+    //更新时间
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private LocalDateTime updateTime;
+
+    //记录  用于 乐观锁操作
+    @TableField(fill = FieldFill.INSERT)
+    //这个注释让乐观锁修改后自增
+    @Version
+    private Integer version;
+
+    @TableField(fill = FieldFill.INSERT)
+    @TableLogic
+    private Integer deleted;
 }
